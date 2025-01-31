@@ -5,7 +5,8 @@ interface AppLayoutProps {
   children: ReactNode;
 }
 const AppLayout = ({ children }: AppLayoutProps) => {
-  return <Box>{children}</Box>;
+  // semnatically meaningful html with either main or section. mui is powerful as it considers SEO.
+  return <Box component="main">{children}</Box>;
 };
 
 export default AppLayout;
