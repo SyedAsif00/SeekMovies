@@ -10,7 +10,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { usePathname, useRouter } from "next/navigation";
 import AppRoutes from "../_lib/AppRoutes";
 import { Badge } from "@mui/material";
-export default function ButtonAppBar() {
+
+interface AppDrawerProps {
+  onClose: () => void;
+}
+export default function ButtonAppBar({ onClose }: AppDrawerProps) {
   const pathname = usePathname();
   const router = useRouter();
   const handleNavigate = (path: string) => {
@@ -26,6 +30,7 @@ export default function ButtonAppBar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={onClose}
           >
             <MenuIcon />
           </IconButton>
@@ -33,11 +38,12 @@ export default function ButtonAppBar() {
             variant="h6"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            SeekMovie
+            Movie Hub
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {Object.keys(AppRoutes).map((item: string, index: number) => (
               <Badge
+                key={item}
                 invisible={index == 0}
                 // badgeContent={bookmarks.length}
                 color="success"
