@@ -7,12 +7,15 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import AppRoutes from "../_lib/AppRoutes";
 import { Badge } from "@mui/material";
-import { Label } from "@mui/icons-material";
 export default function ButtonAppBar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const handleNavigate = (path: string) => {
+    router.push(path);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -48,12 +51,12 @@ export default function ButtonAppBar() {
                     fontSize: 16,
                     fontWeight: pathname === AppRoutes[item] ? "700" : "400",
                     transition: "background 0.3s ease, color 0.3s ease",
-                    // borderBottom:
-                    //   pathname === AppRoutes[item] ? "1px solid #1C8394" : "",
-                    // "&:hover": { color: "#FFFFFF" },
+                    borderBottom:
+                      pathname === AppRoutes[item] ? "1px solid #1C8394" : "",
+                    "&:hover": { color: "#FFFFFF" },
                   }}
                   key={index}
-                  //   onClick={() => handleNavigate(AppRoutes[item])}
+                  onClick={() => handleNavigate(AppRoutes[item])}
                 >
                   {item}
                 </Button>
