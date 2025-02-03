@@ -11,6 +11,7 @@ interface BookmarkState {
 // bookmark store: Handle movies that are bookmarked in localstorage
 
 export const useBookmarksStore = create<BookmarkState>()(
+  //! here it uses the persist method to use the local storgae to store the bookmarked in the LS,
   persist(
     (set) => ({
       bookmarks: [],

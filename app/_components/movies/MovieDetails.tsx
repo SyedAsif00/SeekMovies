@@ -12,8 +12,9 @@ const MovieDetails = ({
   movieId: string;
   clearMovieId: () => void;
 }) => {
-  const { data, isLoading } = useMovie(movieId);
-
+  //! here it calls for the details api, data is fecthed and destructured here as data and is fetching. also the use movies uses the paramter which is the ID in this case, agaist this id the the details are called
+  const { data, isFetching } = useMovie(movieId);
+  //! initially the image is set as fallback, but later in the useffect we say if there is data and poster is there too then we update the state for the image in the poster, so use effect only runs where there is a change in the data, if the data is fetched then it change the state
   const [imageSrc, setImageSrc] = useState<string>(FallbackImage.src);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const MovieDetails = ({
   // can show more detials using object dot notation (intellisense)
   return (
     <Modal open={true} onClose={clearMovieId}>
-      {isLoading && (
+      {isFetching && (
         <Box
           sx={{
             display: "flex",

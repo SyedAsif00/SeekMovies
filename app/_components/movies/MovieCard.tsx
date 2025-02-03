@@ -1,3 +1,4 @@
+//! map is used in the parent of this component, it recives every iduvisual item in every iteration. so we can say movie. and etc
 import React, { useState, MouseEvent } from "react";
 import { Card, CardHeader } from "@mui/material";
 import { CardMedia, Typography, Snackbar, Alert } from "@mui/material";
@@ -16,9 +17,8 @@ const MovieCard = ({
   viewDetails: (id: string) => void;
 }) => {
   const { bookmarks, addBookmark, removeBookmark } = useBookmarksStore();
-  const [isBookmarked, setIsBookmarked] = useState(
-    bookmarks.some((b) => b.imdbID === movie.imdbID)
-  );
+  const isBookmarked = bookmarks.some((b) => b.imdbID === movie.imdbID);
+
   const [imageSrc, setImageSrc] = useState<string>(movie.Poster.toString());
 
   // State to manage both Snackbar visibility and message
@@ -35,21 +35,21 @@ const MovieCard = ({
 
   const handleBookmarkToggle = (event: MouseEvent) => {
     event.stopPropagation();
-    const newIsBookmarked = !isBookmarked;
-    setIsBookmarked(newIsBookmarked);
 
-    if (newIsBookmarked) {
-      addBookmark(movie);
-      setSnackbarState({ open: true, message: "Added to bookmarks" });
-    } else {
+    if (isBookmarked) {
       removeBookmark(movie.imdbID);
       setSnackbarState({ open: true, message: "Removed from bookmarks" });
+    } else {
+      addBookmark(movie);
+      setSnackbarState({ open: true, message: "Added to bookmarks" });
     }
   };
 
   return (
+    //! this module uses the movies tobe showcased here in the UI. movie img and the details are used to show case the img and the headers etc
     <Card onClick={() => viewDetails(movie.imdbID)} className="movie-card">
       <CardMedia
+        //
         component="img"
         image={imageSrc}
         onError={handleImageError}

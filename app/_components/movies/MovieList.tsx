@@ -25,6 +25,9 @@ const MovieList: React.FC<MovieListProps> = ({
   if (!movies.length) return null;
 
   return (
+    //! this module uses the loadmore function as NEXT in the props, this library works on NEXT, HAS MORE, these things has to be provided.
+    //! next is called when there is more data, which increments the page number
+    //! has more is set to FALSE when the movies.length is equal to total thing, as long as the hasMore is false there will be fetching
     <InfiniteScroll
       dataLength={movies.length}
       next={loadMore}
@@ -34,6 +37,7 @@ const MovieList: React.FC<MovieListProps> = ({
       <Grid container spacing={2} sx={{ my: 5 }}>
         {movies.map((movie) => (
           <Grid item xs={6} md={4} lg={3} xl={2} key={movie.imdbID}>
+            //! we use the girds to make the layout.
             <MovieCard
               movie={movie}
               viewDetails={(id: string) => setViewMovieDetail(id)}
@@ -48,6 +52,8 @@ const MovieList: React.FC<MovieListProps> = ({
         )}
       </Grid>
       {/* Alert Modal to view details of a movie  */}
+      //! to show the details in the modal, we send the single movie id to the
+      //! child component that will use a modal there to show case the data
       {viewMovieDetails && (
         <MovieDetails
           movieId={viewMovieDetails}
