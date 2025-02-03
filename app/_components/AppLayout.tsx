@@ -1,32 +1,39 @@
 "use client";
-import React, { ReactNode, useState } from "react";
-import { Box, CssBaseline } from "@mui/material";
-import AppBar from "./AppBar";
+import React, { useState, ReactNode } from "react";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Box, CssBaseline, Toolbar } from "@mui/material";
 import AppDrawer from "./AppDrawer";
+import LoadingWidget from "./LoadingWidget";
+import AppBar from "./AppBar";
+import queryClient from "../_lib/queryClient";
+
 interface AppLayoutProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
+
+// Basic app layout including App bar and sidebar
 const AppLayout = ({ children }: AppLayoutProps) => {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
   const handleDrawerToggle = () => setMobileOpen((prev) => !prev);
-  // semnatically meaningful html with either main or section. mui is powerful as it considers SEO.
+
   return (
-    <React.Fragment>
+    <QueryClientProvider client={queryClient}>
       <AppBar onClose={handleDrawerToggle} />
       <AppDrawer open={mobileOpen} onClose={handleDrawerToggle} />
 
       <Box
+        component="main"
         sx={{
           padding: { xs: "0 16px", sm: "0 30px", md: "0 60px", lg: "0 120px" },
           mt: 4,
         }}
-        component="main"
       >
+        <Toolbar />
+        <LoadingWidget />
         <CssBaseline />
         {children}
       </Box>
-    </React.Fragment>
+    </QueryClientProvider>
   );
 };
-
 export default AppLayout;

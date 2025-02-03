@@ -10,13 +10,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { usePathname, useRouter } from "next/navigation";
 import AppRoutes from "../_lib/AppRoutes";
 import { Badge } from "@mui/material";
-
+import { useBookmarksStore } from "../_store/useBookmarksStore";
 interface AppDrawerProps {
   onClose: () => void;
 }
 export default function ButtonAppBar({ onClose }: AppDrawerProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const { bookmarks } = useBookmarksStore();
   const handleNavigate = (path: string) => {
     router.push(path);
   };
@@ -45,7 +46,7 @@ export default function ButtonAppBar({ onClose }: AppDrawerProps) {
               <Badge
                 key={item}
                 invisible={index == 0}
-                // badgeContent={bookmarks.length}
+                badgeContent={bookmarks.length}
                 color="success"
                 showZero
               >
