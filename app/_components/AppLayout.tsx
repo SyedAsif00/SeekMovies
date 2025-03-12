@@ -8,7 +8,7 @@ import LoadingWidget from "./LoadingWidget";
 import AppBar from "./AppBar";
 import queryClient from "../_lib/queryClient";
 import { useRouter, usePathname } from "next/navigation";
-import { isAuthenticated } from "@/app/_store/useAuthStore";
+// import { isAuthenticated } from "@/app/_store/useAuthStore";
 
 interface AppLayoutProps {
   children?: ReactNode;
@@ -21,12 +21,12 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   const pathname = usePathname();
 
   // Auth Guard: Redirect to login if not authenticated
-  useEffect(() => {
-    const publicRoutes = ["/auth/login", "/auth/register"];
-    if (!isAuthenticated() && !publicRoutes.includes(pathname)) {
-      router.push("/auth/login");
-    }
-  }, [router, pathname]);
+  // useEffect(() => {
+  //   const publicRoutes = ["/auth/login", "/auth/register"];
+  //   if (!isAuthenticated() && !publicRoutes.includes(pathname)) {
+  //     router.push("/auth/login");
+  //   }
+  // }, [router, pathname]);
 
   const handleDrawerToggle = () => setMobileOpen((prev) => !prev);
 

@@ -23,6 +23,9 @@ const MovieList: React.FC<MovieListProps> = ({
   const [viewMovieDetails, setViewMovieDetail] = useState<string | null>(null);
 
   if (!movies.length) return null;
+  const uniqueMovies = Array.from(
+    new Map(movies.map((m) => [m.imdbID, m])).values()
+  );
 
   return (
     //! this module uses the loadmore function as NEXT in the props, this library works on NEXT, HAS MORE, these things has to be provided.
@@ -35,9 +38,8 @@ const MovieList: React.FC<MovieListProps> = ({
       loader={null}
     >
       <Grid container spacing={2} sx={{ my: 5 }}>
-        {movies.map((movie) => (
+        {uniqueMovies.map((movie) => (
           <Grid item xs={6} md={4} lg={3} xl={2} key={movie.imdbID}>
-            //! we use the girds to make the layout.
             <MovieCard
               movie={movie}
               viewDetails={(id: string) => setViewMovieDetail(id)}
