@@ -53,9 +53,13 @@ const MovieList: React.FC<MovieListProps> = ({
           </Grid>
         )}
       </Grid>
-      {/* Alert Modal to view details of a movie  */}
-      //! to show the details in the modal, we send the single movie id to the
-      //! child component that will use a modal there to show case the data
+      {/* Alert Modal to view details of a movie 
+      
+      
+     to show the details in the modal, we send the single movie id to the
+    child component that will use a modal there to show case the data
+      
+      */}
       {viewMovieDetails && (
         <MovieDetails
           movieId={viewMovieDetails}

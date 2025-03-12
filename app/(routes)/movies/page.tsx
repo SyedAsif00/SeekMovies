@@ -31,7 +31,7 @@ const Movies = () => {
   useEffect(() => {
     // remove movies when search term is empty
     if (!debouncedSearchTerm) setMovies([]);
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, setMovies]);
 
   useEffect(() => {
     //! trigger the next page api based on the total records and current page
@@ -39,7 +39,7 @@ const Movies = () => {
     //! if the movies.length will represent how much movies are fetched, if it is less than the totalresults, the useffect will run and the state will be updated based on that new movies will be fetched
     if (data?.totalResults && movies.length >= parseInt(data.totalResults))
       setHasMore(false);
-  }, [movies.length, data?.totalResults]);
+  }, [movies.length, data?.totalResults, setHasMore]);
   //! when the user types something it stores in the state as a search term, this search term value is passed to another debounce function that put a delay on the setter, this is debouncing
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     // clear states on search

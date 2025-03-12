@@ -25,11 +25,12 @@ const Bookmark = () => {
         >
           <BookmarkIcon sx={{ fontSize: 80, color: "white", mb: 2 }} />
           <Typography variant="h6" gutterBottom>
-            Your bookmarks list is empty!
+            {"Your bookmarks list is empty!"}
           </Typography>
           <Typography variant="body1" color="text.secondary" paragraph>
-            It looks like you haven't added any movies to your bookmarks yet.
-            Browse now and start adding your favorite movies!
+            {
+              " It looks like you haven't added any movies to your bookmarks yet Browse now and start adding your favorite movies!"
+            }
           </Typography>
           <Button onClick={handleNavigate} label="Browse Movies" />
         </Box>

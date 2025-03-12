@@ -51,10 +51,12 @@ export const useMovies = (title: string, page: number = 1) => {
 
         setError(undefined);
         return response;
-      } catch (error: any) {
-        console.error("❌ Caught API Error:", error);
-        setError(error.message || "An unknown error occurred");
-        throw error;
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.error("❌ Caught API Error:", error.message);
+          setError(error.message || "An unknown error occurred");
+          throw error;
+        }
       }
     },
     enabled: !!title,

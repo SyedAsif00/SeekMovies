@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, ReactNode, useEffect } from "react";
+import React, { useState, ReactNode } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Box, CssBaseline, Toolbar } from "@mui/material";
 import AppDrawer from "./AppDrawer";
 import LoadingWidget from "./LoadingWidget";
 import AppBar from "./AppBar";
 import queryClient from "../_lib/queryClient";
-import { useRouter, usePathname } from "next/navigation";
+// import { useRouter, usePathname } from "next/navigation";
 // import { isAuthenticated } from "@/app/_store/useAuthStore";
 
 interface AppLayoutProps {
@@ -17,8 +17,8 @@ interface AppLayoutProps {
 // Basic app layout including App bar and sidebar
 const AppLayout = ({ children }: AppLayoutProps) => {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
-  const router = useRouter();
-  const pathname = usePathname();
+  // const router = useRouter();
+  // const pathname = usePathname();
 
   // Auth Guard: Redirect to login if not authenticated
   // useEffect(() => {

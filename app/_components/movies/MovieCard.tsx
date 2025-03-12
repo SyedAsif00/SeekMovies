@@ -29,7 +29,7 @@ const MovieCard = ({
 
   const handleImageError = () => setImageSrc(FallbackImage.src);
 
-  const handleSnackbarClose = (event: any) => {
+  const handleSnackbarClose = () => {
     setSnackbarState((prevState) => ({ ...prevState, open: false }));
   };
 

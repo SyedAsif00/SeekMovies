@@ -1,81 +1,81 @@
-"use client";
+// "use client";
 
-import { useState } from "react";
-import {
-  Box,
-  TextField,
-  Button,
-  Container,
-  Typography,
-  Alert,
-  Card,
-  CardContent,
-} from "@mui/material";
-import useAuth from "@/app/_hooks/useAuth";
+// import { useState } from "react";
+// import {
+//   Box,
+//   TextField,
+//   Button,
+//   Container,
+//   Typography,
+//   Alert,
+//   Card,
+//   CardContent,
+// } from "@mui/material";
+// import useAuth from "@/app/_hooks/useAuth";
 
-export default function RegisterPage() {
-  const { register, isLoading, error } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+// export default function RegisterPage() {
+//   const { register, isLoading, error } = useAuth();
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    register({ email, password });
-  };
+//   const handleSubmit = (e: React.FormEvent) => {
+//     e.preventDefault();
+//     register({ email, password });
+//   };
 
-  return (
-    <Container maxWidth="xs">
-      <Card sx={{ mt: 8, boxShadow: 3 }}>
-        <CardContent>
-          <Typography variant="h5" textAlign="center" gutterBottom>
-            Create an Account
-          </Typography>
+//   return (
+//     <Container maxWidth="xs">
+//       <Card sx={{ mt: 8, boxShadow: 3 }}>
+//         <CardContent>
+//           <Typography variant="h5" textAlign="center" gutterBottom>
+//             Create an Account
+//           </Typography>
 
-          {error && (
-            <Alert severity="error">
-              {error.response?.data?.message ||
-                error.message ||
-                "An error occurred"}
-            </Alert>
-          )}
+//           {error && (
+//             <Alert severity="error">
+//               {error.response?.data?.message ||
+//                 error.message ||
+//                 "An error occurred"}
+//             </Alert>
+//           )}
 
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
-            <TextField
-              label="Email"
-              fullWidth
-              variant="outlined"
-              margin="normal"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+//           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+//             <TextField
+//               label="Email"
+//               fullWidth
+//               variant="outlined"
+//               margin="normal"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//             />
 
-            <TextField
-              label="Password"
-              fullWidth
-              type="password"
-              variant="outlined"
-              margin="normal"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+//             <TextField
+//               label="Password"
+//               fullWidth
+//               type="password"
+//               variant="outlined"
+//               margin="normal"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//             />
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              sx={{ mt: 2 }}
-              disabled={isLoading}
-            >
-              {isLoading ? "Registering..." : "Register"}
-            </Button>
+//             <Button
+//               type="submit"
+//               fullWidth
+//               variant="contained"
+//               color="primary"
+//               sx={{ mt: 2 }}
+//               disabled={isLoading}
+//             >
+//               {isLoading ? "Registering..." : "Register"}
+//             </Button>
 
-            <Typography textAlign="center" sx={{ mt: 2 }}>
-              Already have an account? <a href="/auth/login">Login</a>
-            </Typography>
-          </Box>
-        </CardContent>
-      </Card>
-    </Container>
-  );
-}
+//             <Typography textAlign="center" sx={{ mt: 2 }}>
+//               Already have an account? <a href="/auth/login">Login</a>
+//             </Typography>
+//           </Box>
+//         </CardContent>
+//       </Card>
+//     </Container>
+//   );
+// }
